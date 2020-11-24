@@ -3,17 +3,7 @@ import s from './MyPosts.module.css';
 import Post from "./Post/Post";
 
 const MyPosts = (props) => {
-
-    let posts = [
-        {id: 1, massage: 'Hi, how are you?', likesCount: 5},
-        {id: 2, massage: "It's my first post", likesCount: 20},
-        {id: 2, massage: "TEST", likesCount: 2},
-        {id: 2, massage: "TES2", likesCount: 24},
-        {id: 3, likesCount: 1},
-    ];
-
-    let postsElements = posts.map( p => (<Post massage={p.massage} likesCount={p.likesCount} />))
-
+    let postsElements = props.posts.map( (post, index) => (<Post key={index} id={index} massage={post.massage} likesCount={post.likesCount} />))
     return (
         <div>
             <div className={s.postsBlock}>
