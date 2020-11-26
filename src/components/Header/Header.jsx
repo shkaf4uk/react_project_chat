@@ -1,10 +1,13 @@
 import React from 'react';
-import s from './Header.module.css';
+import style from './Header.module.css';
+import logo from './../../images/imgonline-com-ua-Transparent-backgr-pSoQRd3zCmlQ.png';
 
 const Header = () => {
     return (
-        <header className={s.header}>
-            <img src={'https://www.pinclipart.com/picdir/middle/51-511102_design-free-logo-srj-hd-logo-png-clipart.png'}/>
+        <header className={style.header}>
+            <img src={logo} alt={'logo'}/>
+            <span className={style.web}>Web</span>
+            <span className={style.chat}>Chat</span>
         </header>
     )
 }

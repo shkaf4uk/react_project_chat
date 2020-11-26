@@ -15,6 +15,7 @@
     padding: 10px;
 }
 
-.massage {
-
+.massage img {
+    width: 5%;
+    border-radius: 20px;
 }

@@ -1,9 +1,14 @@
 import React from 'react';
-import s from '../Dialogs.module.css';
+import style from '../Dialogs.module.css';
+import avatar from '../../../images/photo_2020-10-31_20-36-09.jpg';
 
 const Massage = (props) => {
     return (
-        <div className={s.massage}>{props.massage}</div>
+        <div className={style.massage}>
+            <img src={avatar} alt={'avatar'} />
+            {props.massage}
+        </div>
+
     )
 }
 

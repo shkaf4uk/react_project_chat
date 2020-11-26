@@ -7,8 +7,40 @@
 .item a {
     color: red;
     text-decoration: none;
+    font-size: 20px;
 }
 
 .item a.active {
+    color: blue;
+}
+
+.item:last-child {
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.item:last-child a {
+    align-items: center;
+}
+
+.item .friend__link {
+    color: #a900ff;
+    margin-left: 30px;
+}
+
+.item .friends img {
+    width: 80%;
+    border-radius: 25px;
+}
+
+.friends {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.friends a span {
+    font-size: 15px;
     color: blue;
 }
