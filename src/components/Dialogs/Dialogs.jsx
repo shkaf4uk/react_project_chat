@@ -2,18 +2,19 @@ import React from 'react';
 import style from './Dialogs.module.css';
 import DialogItem from './DialogItem/DialogItem';
 import Massage from './Massage/Massage';
+import {addMassageActionCreator, changeMassage} from "../../redux/dialogs_reducer";
 
 const Dialogs = (props) => {
     let newMassage = React.createRef();
 
     let sendMessage = () => {
-        let text = newMassage.current.value;
-        props.dispatch(text);
+        props.dispatch(addMassageActionCreator());
     }
 
     let changeMessage = () => {
         let text = newMassage.current.value;
-        props.dispatch({type:'', newMess:text});
+        let action = changeMassage(text);
+        props.dispatch(action);
     }
 
     let dialogElements = props.dialogs.map( (el, index) => (<DialogItem key={index} id={index} name={el.name} />));
@@ -24,8 +25,10 @@ const Dialogs = (props) => {
                 { dialogElements }
             </div>
             <div className={style.massages}>
-                { massagesElements }
-                <textarea ref={newMassage} value={props.newMessage} onChange={changeMessage}/>
+                <div>{massagesElements}</div>
+                <div><textarea ref={newMassage}
+                               value={props.newMessage}
+                               onChange={changeMessage} placeholder={'Write a massage...'} /></div>
                 <button onClick={sendMessage}>Send</button>
             </div>
         </div>
