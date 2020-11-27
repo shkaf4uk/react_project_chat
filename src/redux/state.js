@@ -4,9 +4,6 @@ let store = {
             posts:[
                 {id: 1, massage: 'Hi, how are you?', likesCount: 5},
                 {id: 2, massage: "It's my first post", likesCount: 20},
-                {id: 2, massage: "TEST", likesCount: 2},
-                {id: 2, massage: "TES2", likesCount: 24},
-                {id: 3, likesCount: 1},
             ],
             newPostText: '',
         },
@@ -33,40 +30,42 @@ let store = {
     _callSubscriber() {
         console.log('State was change');
     },
+
     getState() {
         return this._state
-    },
-    addPost () {
-        let newPost = {
-            id: 5,
-            massage: this._state.profilePage.newPostText,
-            likesCount: 0
-        };
-        this._state.profilePage.posts.push(newPost);
-        this._state.profilePage.newPostText = '';
-        this._callSubscriber(this._state);
-    },
-    updateNewPostText(newPost) {
-        this._state.profilePage.newPostText = newPost;
-        this._callSubscriber(this._state);
-    },
-    sendMessage() {
-        let newMessage = {
-            id: 5,
-            massage: this._state.dialogPage.newMessage,
-            likesCount: 0
-        };
-        this._state.dialogPage.massages.push(newMessage);
-        this._state.dialogPage.newMessage = '';
-        this._callSubscriber(this._state);
-    },
-    updateNewMessageText (newMess) {
-        this._state.dialogPage.newMessage = newMess;
-        this._callSubscriber(this._state);
     },
     subscribe (observer) {
         this._callSubscriber = observer;
     },
+
+    dispatch(action){
+        if (action.type === 'ADD-POST') {
+            let newPost = {
+                id: 5,
+                massage: this._state.profilePage.newPostText,
+                likesCount: 0
+            };
+            this._state.profilePage.posts.push(newPost);
+            this._state.profilePage.newPostText = '';
+            this._callSubscriber(this._state);
+        } else if (action.type === 'UPDATE-NEW-POST-TEXT'){
+            this._state.profilePage.newPostText = action.newPost;
+            this._callSubscriber(this._state);
+        } else if (action.type === 'SEND-MESSAGE'){
+            let newMessage = {
+                id: 5,
+                massage: this._state.dialogPage.newMessage,
+                likesCount: 0
+            };
+            this._state.dialogPage.massages.push(newMessage);
+            this._state.dialogPage.newMessage = '';
+            this._callSubscriber(this._state);
+        } else if (action.type === 'UPDATE-NEW-MASSAGE-TEXT') {
+            this._state.dialogPage.newMessage = action.newMess;
+            this._callSubscriber(this._state);
+        }
+    }
+
 }
 
 

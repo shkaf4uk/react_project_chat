@@ -8,12 +8,12 @@ const Dialogs = (props) => {
 
     let sendMessage = () => {
         let text = newMassage.current.value;
-        props.sendMessage(text);
+        props.dispatch(text);
     }
 
     let changeMessage = () => {
         let text = newMassage.current.value;
-        props.updateNewMessageText(text);
+        props.dispatch({type:'', newMess:text});
     }
 
     let dialogElements = props.dialogs.map( (el, index) => (<DialogItem key={index} id={index} name={el.name} />));
