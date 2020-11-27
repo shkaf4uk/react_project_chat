@@ -2,23 +2,24 @@ import React from 'react';
 import style from './Dialogs.module.css';
 import DialogItem from './DialogItem/DialogItem';
 import Massage from './Massage/Massage';
-import {addMassageActionCreator, changeMassage} from "../../redux/dialogs_reducer";
+import {changeMassage} from "../../redux/dialogs_reducer";
 
 const Dialogs = (props) => {
+    let state = props.dialogPage;
     let newMassage = React.createRef();
+    let dialogElements = state.dialogPage.dialogs.map( (el, index) => (<DialogItem key={index} id={index} name={el.name} />));
+    let massagesElements = state.dialogPage.massages.map( (el, index) => (<Massage key={index} id={index} massage={el.massage} />))
 
     let sendMessage = () => {
-        props.dispatch(addMassageActionCreator());
+        props.sendMessageText();
     }
 
     let changeMessage = () => {
         let text = newMassage.current.value;
         let action = changeMassage(text);
-        props.dispatch(action);
+        props.store.dispatch(action);
     }
 
-    let dialogElements = props.dialogs.map( (el, index) => (<DialogItem key={index} id={index} name={el.name} />));
-    let massagesElements = props.massages.map( (el, index) => (<Massage key={index} id={index} massage={el.massage} />))
     return (
         <div className={style.dialogs}>
             <div className={style.dialogsItems}>
