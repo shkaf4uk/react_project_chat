@@ -17,7 +17,7 @@ const Dialogs = (props) => {
     let changeMessage = () => {
         let text = newMassage.current.value;
         let action = changeMassage(text);
-        props.store.dispatch(action);
+        props.dispatch(action);
     }
 
     return (
@@ -28,7 +28,7 @@ const Dialogs = (props) => {
             <div className={style.massages}>
                 <div>{massagesElements}</div>
                 <div><textarea ref={newMassage}
-                               value={props.newMessage}
+                               value={state.dialogPage.newMessage}
                                onChange={changeMessage} placeholder={'Write a massage...'} /></div>
                 <button onClick={sendMessage}>Send</button>
             </div>
