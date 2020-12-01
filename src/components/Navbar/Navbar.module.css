@@ -10,7 +10,7 @@
     font-size: 20px;
 }
 
-.item a.active {
+.item a.activeLink {
     color: blue;
 }
 

@@ -2,3 +2,12 @@
     width: 80px;
     height: 100px;
 }
+
+.seceltedPage {
+    font-weight: bold;
+}
+
+.page span {
+    margin: 10px;
+    cursor: pointer;
+}
