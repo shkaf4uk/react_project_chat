@@ -11,3 +11,8 @@
     margin: 10px;
     cursor: pointer;
 }
+
+.loading {
+    width: 100px;
+    height: 100px;
+}

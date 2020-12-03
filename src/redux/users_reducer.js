@@ -1,15 +1,16 @@
-// import avatar from './../images/photo_2020-11-05_10-43-38.jpg';
 const FOLLOW = 'FOLLOW';
 const UN_FOLLOW = 'UN_FOLLOW';
 const SET_USERS = 'SET_USERS';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_TOTAL_USER_COUNT= 'SET_TOTAL_USER_COUNT';
+const TOGGLE_IS_FETCHING= 'TOGGLE_IS_FETCHING';
 
 let initialState = {
     users: [],
     pageSize: 5,
     totalUsersCount: 0,
-    currentPage: 2,
+    currentPage: 1,
+    isFetching: true,
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -40,6 +41,8 @@ const usersReducer = (state = initialState, action) => {
             return {...state, currentPage: action.currentPage}
         case SET_TOTAL_USER_COUNT:
             return {...state, totalUsersCount: action.totalUsersCount}
+        case TOGGLE_IS_FETCHING:
+            return {...state, isFetching: action.isFetching}
         default:
             return state;
     }
@@ -50,5 +53,6 @@ export const unFollowAC = (userId) => ({type: UN_FOLLOW, userId});
 export const setUsersAC = (users) => ({type: SET_USERS, users});
 export const setCurrentPageAC = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage:currentPage});
 export const setUserTotalCountAC = (totalUsersCount) => ({type: SET_TOTAL_USER_COUNT, totalUsersCount:totalUsersCount});
+export const toggleIsFetchingAC = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching:isFetching});
 
 export default usersReducer;
