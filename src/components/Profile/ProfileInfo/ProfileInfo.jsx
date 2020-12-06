@@ -1,17 +1,36 @@
 import React from 'react';
-import s from './ProfileInfo.modele.css';
+import style from './ProfileInfo.module.css';
+import headerImg from '../../../images/emerald-lake-yoho-national-park-kayaker.jpg';
+import Preloader from "../../Preloader/Preloader";
 
-const ProfileInfo = () => {
+const ProfileInfo = (props) => {
+
+    if (!props.profile) {
+        return <Preloader />
+    }
+
     return (
         <div>
-            <div>
-                <img src={'https://img.theculturetrip.com/768x432/wp-content/uploads/2016/03/suspension-bridge-1149942_1280.jpg'}/>
+            <div className={style.headerImg}>
+                <img src={headerImg} alt={''}/>
             </div>
-            <div>
-                <img src={'https://i.pinimg.com/564x/7a/7e/be/7a7ebe744313282a2bfa30cb154a39cb.jpg'}/>
-            </div>
-            <div className={s.descriptionBlock}>
-                ava + description
+            <div className={style.containerInfo}>
+                <div className={style.profileImage}>
+                    <img src={props.profile.photos.large} alt={''}/>
+                </div>
+                <div className={style.profileInfo}>
+                    <div ><b>Name:</b> <span className={style.myName}>{props.profile.fullName}</span></div>
+                    <div><b>Work:</b> <span>{props.profile.lookingForAJob ? 'searching' : 'have' }</span></div>
+                    <div><b>About me:</b> {props.profile.aboutMe}</div>
+                    {console.log(props.profile.contacts)}
+                    <div><b>Contact with me:</b><br/>
+                        {props.profile.contacts.facebook}<br/>
+                        {props.profile.contacts.vk}<br/>
+                        {props.profile.contacts.twitter}<br/>
+                        {props.profile.contacts.instagram}<br/>
+                        {props.profile.contacts.github}<br/>
+                    </div>
+                </div>
             </div>
         </div>
     )

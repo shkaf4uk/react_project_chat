@@ -1,0 +1,38 @@
+.headerImg {
+    height: 200px;
+    padding-bottom: 10px;
+}
+
+.headerImg img {
+    width: 100%;
+    height: 100%;
+}
+
+.containerInfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.profileImage {
+    width: 33%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.profileImage img {
+    border-radius: 10px;
+}
+
+.myName {
+    text-transform: uppercase;
+}
+
+.profileInfo div {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
