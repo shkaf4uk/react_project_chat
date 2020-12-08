@@ -8,7 +8,6 @@ const Massage = (props) => {
             <img src={avatar} alt={'avatar'} />
             {props.massage}
         </div>
-
     )
 }
 

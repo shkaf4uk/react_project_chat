@@ -4,7 +4,6 @@ import headerImg from '../../../images/emerald-lake-yoho-national-park-kayaker.j
 import Preloader from "../../Preloader/Preloader";
 
 const ProfileInfo = (props) => {
-
     if (!props.profile) {
         return <Preloader />
     }
@@ -22,7 +21,6 @@ const ProfileInfo = (props) => {
                     <div ><b>Name:</b> <span className={style.myName}>{props.profile.fullName}</span></div>
                     <div><b>Work:</b> <span>{props.profile.lookingForAJob ? 'searching' : 'have' }</span></div>
                     <div><b>About me:</b> {props.profile.aboutMe}</div>
-                    {console.log(props.profile.contacts)}
                     <div><b>Contact with me:</b><br/>
                         {props.profile.contacts.facebook}<br/>
                         {props.profile.contacts.vk}<br/>

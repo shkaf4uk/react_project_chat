@@ -31,8 +31,7 @@ const Users = (props) => {
                                                props.onPageChanged(p)
                                            }}>{p}</span>)}
         </div>
-        {
-            props.users.map(u => <div key={u.id}>
+        {props.users.map(u => <div key={u.id}>
                 <span>
                     <div>
                         <NavLink to={'/profile/' + u.id}>

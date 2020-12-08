@@ -20,3 +20,11 @@
     position: absolute;
     margin-top: 30px;
 }
+
+.loginBlock {
+    float: right;
+}
+
+.loginBlock a {
+    color: black;
+}
