@@ -1,4 +1,4 @@
-import * as axios from "axios";
+import {usersAPI} from "../api/api";
 
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
@@ -42,10 +42,9 @@ export const setUserProfile = profile => ({type: SET_USER_PROFILE, profile});
 
 export const getProfileUser = (userId) => {
     return (dispatch) => {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
-            .then(response => {
-                dispatch(setUserProfile(response.data));
-            })
+        usersAPI.getProfile(userId).then(response => {
+            dispatch(setUserProfile(response.data));
+        })
     }
 }
 

@@ -3,6 +3,7 @@ import style from './Dialogs.module.css';
 import DialogItem from './DialogItem/DialogItem';
 import Massage from './Massage/Massage';
 import {changeMassage} from "../../redux/dialogs_reducer";
+import {Redirect} from "react-router-dom";
 
 const Dialogs = (props) => {
     let state = props.dialogPage;
@@ -19,6 +20,8 @@ const Dialogs = (props) => {
         let action = changeMassage(text);
         props.dispatch(action);
     }
+
+    if (!props.isAuth) return <Redirect to='/login' />
 
     return (
         <div className={style.dialogs}>
