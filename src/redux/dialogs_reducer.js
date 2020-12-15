@@ -1,5 +1,4 @@
 const SEND_MESSAGE = 'SEND-MESSAGE';
-const UPDATE_NEW_MASSAGE_TEXT = 'UPDATE-NEW-MASSAGE-TEXT';
 
 let initialState = {
     dialogs: [
@@ -18,27 +17,19 @@ let initialState = {
         {id: 5, massage: 'Yo'},
         {id: 6, massage: 'Yo'},
     ],
-    newMessage: '',
 }
 
 const dialogReducer = (state = initialState, action) => {
     switch (action.type) {
-        case UPDATE_NEW_MASSAGE_TEXT:
-            return  {
-                ...state,
-                newMessage: action.newMess
-            };
         case SEND_MESSAGE:
             return  {
                 ...state,
-                massages: [...state.massages, {id: 5, massage: state.newMessage, likesCount: 0}],
-                newMessage: '',
+                massages: [...state.massages, {id: 5, massage: action.newMessage, likesCount: 0}],
             };
         default:
             return state;
     }
 }
 
-export const addMassageActionCreator = () => ({type: 'SEND-MESSAGE'});
-export const changeMassage = (text) => ({type: 'UPDATE-NEW-MASSAGE-TEXT', newMess: text});
+export const addMassageActionCreator = (newMessage) => ({type: 'SEND-MESSAGE', newMessage} );
 export default dialogReducer;
