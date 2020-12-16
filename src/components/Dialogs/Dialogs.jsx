@@ -4,6 +4,8 @@ import DialogItem from './DialogItem/DialogItem';
 import Massage from './Massage/Massage';
 import {Redirect} from "react-router-dom";
 import {Field, reduxForm} from "redux-form";
+import {Textarea} from "../../utils/FormControls/FormControls";
+import {maxLengthCreator, required} from "../../utils/validators";
 
 const Dialogs = (props) => {
     let state = props.dialogPage;
@@ -32,10 +34,13 @@ const Dialogs = (props) => {
     )
 }
 
+let maxLength50 = maxLengthCreator(50);
+
 const DialogsForm = (props) => {
     return <form onSubmit={props.handleSubmit}>
         <div>
-            <Field placeholder={'Write a massage...'} component={'textarea'} name={'dialog'}/>
+            <Field placeholder={'Write a massage...'} component={Textarea}
+                   name={'dialog'} validate={[required, maxLength50]}/>
         </div>
         <button>Send</button>
     </form>

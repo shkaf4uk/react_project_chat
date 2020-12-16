@@ -1,14 +1,24 @@
 import React from 'react';
 import {Field, reduxForm} from "redux-form";
+import {Input} from "../../utils/FormControls/FormControls";
+import {required} from "../../utils/validators";
+import {connect} from "react-redux";
+import {login} from "../../redux/auth_reducer";
+import {Redirect} from "react-router-dom";
+import style from './Login.module.css';
 
-const Login = () => {
+const Login = (props) => {
     const onSubmit = (formData) => {
-        console.log(formData)
+        props.login(formData.email, formData.password, formData.rememberMe)
+    }
+
+    if (props.isAuth) {
+        return <Redirect to={'/profile'} />
     }
 
     return (
-        <div>
-            <p>LOGIN</p>
+        <div className={style.signIn}>
+            <p>SIGN IN</p>
             <LoginReduxForm onSubmit={onSubmit} />
         </div>)
 };
@@ -18,16 +28,16 @@ const LoginForm = (props) => {
     return (
             <form onSubmit={props.handleSubmit}>
                 <div>
-                    <Field name={'login'} placeholder={"Login"} component={'input'}/>
+                    <Field name={'email'} placeholder={"Email"} component={Input} validate={[required]}/>
                 </div>
                 <div>
-                    <p>PASSWORD</p>
-                    <Field name={'password'} placeholder={"Password"} component={'input'}/>
+                    <Field type={'password'} name={'password'} placeholder={"Password"} component={Input} validate={[required]}/>
                 </div>
-                <div>
-                    <Field name={'rememberMe'} type={"checkbox"} component={'input'}/> remember me
+                <div className={style.rememberMe}>
+                    <Field name={'rememberMe'} type={"checkbox"} component={Input} validate={[required]}/>
+                    <span>Remember me</span>
                 </div>
-                <div>
+                <div className={style.form__btn}>
                     <button>Sign in</button>
                 </div>
             </form>)
@@ -36,4 +46,9 @@ const LoginForm = (props) => {
 //обернул с помощью HOC
 const LoginReduxForm = reduxForm({form: 'login'})(LoginForm)
 
-export default Login;
+const mapStateToProps = (state) => ({
+    isAuth: state.auth.isAuth
+})
+
+//сделал контейнерной компонентой
+export default connect(mapStateToProps, {login})(Login);

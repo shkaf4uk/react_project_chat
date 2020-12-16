@@ -1,7 +1,8 @@
 import * as axios from "axios";
 
 const instanse = axios.create({
-    baseURL: 'https://social-network.samuraijs.com/api/1.0/'
+    baseURL: 'https://social-network.samuraijs.com/api/1.0/',
+    withCredentials: true
 })
 
 export const usersAPI = {
@@ -29,7 +30,13 @@ export const profileAPI = {
 
 export const loginAPI = {
     getAuth() {
-        return instanse.get(`auth/me`, {withCredentials: true})
-    }
+        return instanse.get(`auth/me`);
+    },
+    login(email, password, rememberMe = false) {
+        return instanse.post(`auth/login`, {email, password, rememberMe});
+    },
+    logout(email, password, rememberMe = false) {
+        return instanse.delete(`auth/login`);
+    },
 }
 

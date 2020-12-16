@@ -1,0 +1,22 @@
+input {
+    width: 300px;
+    height: 40px;
+    border: 0;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+input[type="checkbox"] {
+    height: 20px;
+    width: 20px;
+}
+
+.formControl.error input,
+.formControl.error textarea {
+    border: solid red 2px;
+}
+
+.formControl.error span {
+    color: red;
+}
