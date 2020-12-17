@@ -22,10 +22,13 @@
     justify-content: flex-start;
     align-items: center;
     margin-left: 10px;
+    margin-right: 10px;
 }
 
 .profileImage img {
+    padding-top: 10px;
     border-radius: 10px;
+    width: 100%;
 }
 
 .myName {

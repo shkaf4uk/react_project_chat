@@ -1,8 +1,8 @@
 import React from 'react';
 import style from './ProfileInfo.module.css';
-import headerImg from '../../../images/emerald-lake-yoho-national-park-kayaker.jpg';
 import Preloader from "../../Preloader/Preloader";
 import ProfileStatus from './ProfileStatus';
+import largePhoto from '../../../images/unnamed.png';
 
 const ProfileInfo = (props) => {
     if (!props.profile) {
@@ -11,12 +11,11 @@ const ProfileInfo = (props) => {
 
     return (
         <div>
-            <div className={style.headerImg}>
-                <img src={headerImg} alt={''}/>
-            </div>
             <div className={style.containerInfo}>
                 <div className={style.profileImage}>
-                    <img src={props.profile.photos.large} alt={''}/>
+                    {props.profile.photos.large
+                        ? <img src={props.profile.photos.large} alt={''}/>
+                        : <img src={largePhoto} alt={''}/>  }
                 </div>
                 <div className={style.profileInfo}>
 

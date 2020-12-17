@@ -1,5 +1,5 @@
 .userPhoto {
-    width: 80px;
+    width: 100px;
     height: 100px;
 }
 
@@ -12,7 +12,15 @@
     cursor: pointer;
 }
 
-/*.loading {*/
-/*    width: 100px;*/
-/*    height: 100px;*/
-/*}*/
+.userInfo {
+    display: flex;
+}
+
+.userInfoName {
+    display: flex;
+    flex-direction: column;
+}
+
+.userInfoName div {
+    padding: 2px;
+}

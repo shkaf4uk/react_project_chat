@@ -1,5 +1,5 @@
 import React from 'react';
-import avatar from './../../images/photo_2020-11-05_10-43-38.jpg';
+import avatar from './../../images/unnamed.png';
 import style from './users.module.css';
 import {NavLink} from "react-router-dom";
 
@@ -31,32 +31,28 @@ const Users = (props) => {
                                                props.onPageChanged(p)
                                            }}>{p}</span>)}
         </div>
-        {props.users.map(u => <div key={u.id}>
+        {props.users.map(u => <div className={style.userInfo}  key={u.id}>
                 <span>
                     <div>
                         <NavLink to={'/profile/' + u.id}>
-                            <img src={u.photos.small != null ? u.photos.small : avatar } className={style.userPhoto} alt={''}/>
+                            <img src={u.photos.small != null ? u.photos.small : avatar} className={style.userPhoto}
+                                 alt={''}/>
                         </NavLink>
                     </div>
-                    <div>
-                        <button onClick={() => {
-                            u.followed ? props.unFollow(u.id) : props.follow(u.id)
-                        }}>
-                            {u.followed ? 'UnFollow' : 'Follow'}
-                        </button>
-                    </div>
+
                 </span>
-                <span>
-                    <span>
-                        <div>{u.name}</div>
-                        <div>{u.status}</div>
-                    </span>
-                    <span>
-                        <div>{"u.location.city"}</div>
-                        <div>{"u.location.country"}</div>
-                    </span>
-                </span>
-            </div>)
+            <div className={style.userInfoName}>
+                <div>Name: {u.name}</div>
+                <div>Status: {u.status ? u.status : 'Without status'}</div>
+                <div>
+                    <button onClick={() => {
+                        u.followed ? props.unFollow(u.id) : props.follow(u.id)
+                    }}>
+                        {u.followed ? 'UnFollow' : 'Follow'}
+                    </button>
+                </div>
+            </div>
+        </div>)
         }
     </div>
 }
