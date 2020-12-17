@@ -20,6 +20,12 @@
     justify-content: center;
 }
 
+.formErrors {
+    border: red 1px solid;
+    padding: 5px;
+    color: red;
+}
+
 .form__btn button {
     cursor: pointer;
     display: inline-block;
