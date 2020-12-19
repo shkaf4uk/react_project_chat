@@ -5,7 +5,7 @@ import {Field, reduxForm} from "redux-form";
 import {maxLengthCreator, required} from "../../../utils/validators";
 import {Textarea} from "../../../utils/FormControls/FormControls";
 
-const MyPosts = (props) => {
+const MyPosts = props => {
     let postsElements = props.posts.map((post, index) =>
         (<Post key={index} id={index} massage={post.massage} likesCount={post.likesCount}/>));
 
@@ -24,7 +24,7 @@ const MyPosts = (props) => {
             {postsElements}
         </div>
     )
-}
+};
 
 const maxLength10 = maxLengthCreator(10);
 
