@@ -3,15 +3,6 @@
     height: 100px;
 }
 
-.seceltedPage {
-    font-weight: bold;
-}
-
-.page span {
-    margin: 10px;
-    cursor: pointer;
-}
-
 .userInfo {
     display: flex;
 }

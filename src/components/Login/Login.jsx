@@ -24,9 +24,9 @@ const Login = (props) => {
 };
 
 //заменил инпуты на Field, прописал component + name
-const LoginForm = (props) => {
+const LoginForm = ({handleSubmit, error}) => {
     return (
-            <form onSubmit={props.handleSubmit}>
+            <form onSubmit={handleSubmit}>
                 <div>
                     <Field name={'email'} placeholder={"Email"} component={Input} validate={[required]}/>
                 </div>
@@ -37,8 +37,8 @@ const LoginForm = (props) => {
                     <Field name={'rememberMe'} type={"checkbox"} component={Input} validate={[required]}/>
                     <span>Remember me</span>
                 </div>
-                {props.error ? <div className={style.formErrors}>
-                    {props.error}
+                {error ? <div className={style.formErrors}>
+                    {error}
                 </div> : ''}
 
                 <div className={style.form__btn}>

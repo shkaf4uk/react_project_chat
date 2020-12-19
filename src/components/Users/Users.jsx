@@ -1,36 +1,15 @@
 import React from 'react';
 import avatar from './../../images/unnamed.png';
-import style from './users.module.css';
+import style from './Users.module.css';
 import {NavLink} from "react-router-dom";
+import Pagination from "./Pagination/Pagination";
 
-const Users = (props) => {
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-    let pages = [];
-    for (let i = 1; i <= pagesCount; i++) {
-        pages.push(i);
-    }
-
+const Users = ({currentPage, onPageChanged, totalUsersCount, pageSize, ...props}) => {
     return <div>
-        <div className={style.page}>
-            <button
-                onClick={(e) => {
-                    let pageNumber = props.currentPage;
-                    pageNumber === 1 ? pageNumber = 1 : pageNumber--;
-                    return props.onPageChanged(pageNumber);
-                }}> Back
-            </button>
-            <button
-                onClick={(e) => {
-                    let pageNumber = props.currentPage;
-                    pageNumber++;
-                    return props.onPageChanged(pageNumber);
-                }}> Next
-            </button>
-            {pages.map((p, index) => <span key={index} className={props.currentPage === p ? style.seceltedPage : ''}
-                                           onClick={(e) => {
-                                               props.onPageChanged(p)
-                                           }}>{p}</span>)}
-        </div>
+        <Pagination currentPage={currentPage}
+                    onPageChanged={onPageChanged}
+                    totalUsersCount={totalUsersCount} pageSize={pageSize}  />
+
         {props.users.map(u => <div className={style.userInfo}  key={u.id}>
                 <span>
                     <div>

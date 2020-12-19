@@ -11,7 +11,7 @@ export const usersAPI = {
             .then(response => response.data);
     },
     getProfile(userId) {
-        console.warn('Use profileAPI please')
+        // console.warn('Use profileAPI please')
         return profileAPI.getProfile(userId)
     },
 }
