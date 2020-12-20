@@ -5,27 +5,19 @@ import {NavLink} from "react-router-dom";
 import Pagination from "./Pagination/Pagination";
 
 const Users = ({currentPage, onPageChanged, totalItemsCount, pageSize, portionSize, ...props}) => {
-    return <div>
-        <Pagination currentPage={currentPage}
-                    onPageChanged={onPageChanged}
-                    totalItemsCount={totalItemsCount}
-                    pageSize={pageSize} portionSize={portionSize}  />
-
-        {props.users.map(u => <div className={style.userInfo}  key={u.id}>
-                <span>
-                    <div>
-                        <NavLink to={'/profile/' + u.id}>
-                            <img src={u.photos.small != null ? u.photos.small : avatar} className={style.userPhoto}
-                                 alt={''}/>
-                        </NavLink>
-                    </div>
-
-                </span>
+    return <div className={style.allUsers}>
+        {props.users.map(u => <div className={style.userInfo} key={u.id}>
+            <div>
+                <NavLink to={'/profile/' + u.id}>
+                    <img src={u.photos.small != null ? u.photos.small : avatar} className={style.userPhoto}
+                         alt={''}/>
+                </NavLink>
+            </div>
             <div className={style.userInfoName}>
-                <div>Name: {u.name}</div>
-                <div>Status: {u.status ? u.status : 'Without status'}</div>
+                <div><b>Name:</b> {u.name}</div>
+                <div><b>Status:</b> {u.status ? u.status : '-----'}</div>
                 <div>
-                    <button onClick={() => {
+                    <button className={style.follow_unFollow_btn} onClick={() => {
                         u.followed ? props.unFollow(u.id) : props.follow(u.id)
                     }}>
                         {u.followed ? 'UnFollow' : 'Follow'}
@@ -34,6 +26,10 @@ const Users = ({currentPage, onPageChanged, totalItemsCount, pageSize, portionSi
             </div>
         </div>)
         }
+        <Pagination currentPage={currentPage}
+                    onPageChanged={onPageChanged}
+                    totalItemsCount={totalItemsCount}
+                    pageSize={pageSize} portionSize={portionSize}/>
     </div>
 }
 

@@ -1,8 +1,111 @@
+.page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
 .page span {
-    margin: 10px;
     cursor: pointer;
 }
 
-.selectedPage {
+.div_span {
+    display: inline-block;
+    width: 30px;
+    margin: 5px;
+}
+
+.spanPage {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.spanPage span:hover {
+    /*transition: 0.01s;*/
+    font-size: 18px;
     font-weight: bold;
+}
+
+.selectedPage {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/*button NEXT*/
+.button__next {
+    border-radius: 4px;
+    background: linear-gradient(to right, #67b26b, #4ca2cb) !important;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 16px;
+    padding: 0;
+    width: 100px;
+    transition: all 0.4s;
+    cursor: pointer;
+    margin: 5px;
+    outline: none;
+}
+.button__next span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.4s;
+    margin: 10px;
+}
+.button__next span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+.button__next:hover span {
+    padding-right: 25px;
+}
+.button__next:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+/*button BACK*/
+.button__back {
+    border-radius: 4px;
+    background: linear-gradient(to right, #67b26b, #4ca2cb) !important;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 16px;
+    padding: 0;
+    width: 100px;
+    transition: all 0.4s;
+    cursor: pointer;
+    margin: 5px;
+    outline: none;
+}
+
+.button__back span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.4s;
+    margin: 10px;
+}
+.button__back span:before {
+    content: '\00ab';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: 60px;
+    transition: 0.5s;
+}
+.button__back:hover span {
+    padding-left: 25px;
+}
+.button__back:hover span:before {
+    opacity: 1;
+    left: 0;
 }

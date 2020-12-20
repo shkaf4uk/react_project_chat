@@ -14,42 +14,27 @@ const Pagination = (props) => {
     let leftPortionPageNumber = (portionNumber - 1) * props.portionSize + 1;
     let rightPortionPageNumber = portionNumber * props.portionSize;
 
-
-
     return <div className={style.page}>
-        <button
-            onClick={(e) => {
-                let pageNumber = props.currentPage;
-                pageNumber === 1 ? pageNumber = 1 : pageNumber--;
-                return props.onPageChanged(pageNumber);
-            }}> Back
-        </button>
-        <button
-            onClick={(e) => {
-                let pageNumber = props.currentPage;
-                pageNumber++;
-                return props.onPageChanged(pageNumber);
-            }}> Next
-        </button>
-
-        { portionNumber > 1 && <button onClick={() => {
+        { portionNumber > 1 && <button className={style.button__back} onClick={() => {
             setPortionNumber(portionNumber - 1);
             setCurrentPageAfterChange(currentPageAfterChange - 10);
             props.onPageChanged(currentPageAfterChange - 10);
-        }}>Prev</button> }
+        }}><span>Back</span></button> }
 
-        {pages.filter(p => {
-           return  p >= leftPortionPageNumber && p <= rightPortionPageNumber
-        })
-            .map((p) => <span key={p} className={props.currentPage === p ? style.selectedPage : ''}
-                                     onClick={(e) => props.onPageChanged(p)}>{p}</span>)}
+        <div className={style.spanPage}>
+            {pages.filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
+                .map((p, index) => <div key={index} className={style.div_span}>
+                    <span key={p} className={props.currentPage === p ? style.selectedPage : '' }
+                                       onClick={(e) => props.onPageChanged(p)}>{p}</span>
+                </div>)}
+        </div>
+
         { portionCount > portionNumber &&
-            <button onClick={() => {
+            <button className={style.button__next} onClick={() => {
                 setPortionNumber(portionNumber + 1);
                 setCurrentPageAfterChange(currentPageAfterChange + 10);
                 props.onPageChanged(currentPageAfterChange + 10);
-            }}>Next -></button>
-        }
+            }}><span>Next</span></button>}
     </div>
 }
 
