@@ -4,11 +4,12 @@ import style from './Users.module.css';
 import {NavLink} from "react-router-dom";
 import Pagination from "./Pagination/Pagination";
 
-const Users = ({currentPage, onPageChanged, totalUsersCount, pageSize, ...props}) => {
+const Users = ({currentPage, onPageChanged, totalItemsCount, pageSize, portionSize, ...props}) => {
     return <div>
         <Pagination currentPage={currentPage}
                     onPageChanged={onPageChanged}
-                    totalUsersCount={totalUsersCount} pageSize={pageSize}  />
+                    totalItemsCount={totalItemsCount}
+                    pageSize={pageSize} portionSize={portionSize}  />
 
         {props.users.map(u => <div className={style.userInfo}  key={u.id}>
                 <span>
