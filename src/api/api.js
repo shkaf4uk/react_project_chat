@@ -2,18 +2,17 @@ import * as axios from "axios";
 
 const instanse = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
-    withCredentials: true
+    withCredentials: true,
+    headers: {
+        "API-KEY": "85dc7a58-6eaf-4275-9c0a-798e2f927814"
+    }
 })
 
 export const usersAPI = {
     getUsers(currentPage = 1, pageSize = 5) {
         return instanse.get(`users?page=${currentPage}&count=${pageSize}`)
             .then(response => response.data);
-    },
-    getProfile(userId) {
-        // console.warn('Use profileAPI please')
-        return profileAPI.getProfile(userId)
-    },
+    }
 }
 
 export const profileAPI = {
@@ -25,6 +24,18 @@ export const profileAPI = {
     },
     updateStatus(status) {
         return instanse.put(`profile/status/`, {status: status})
+    },
+    saveProfile(profile) {
+        return instanse.put(`profile`, profile)
+    },
+    savePhoto(file) {
+        let formData = new FormData();
+        formData.append("image", file);
+        return instanse.put(`profile/photo/`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
     }
 }
 

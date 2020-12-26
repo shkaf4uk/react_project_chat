@@ -30,7 +30,7 @@ const ProfileStatusWithHooks = (props) => {
         {editMode &&
         <div><b>Status: </b>
             <input className={style.input} onChange={onStatusChange} autoFocus={true}
-                   onBlur={deActivatedEditMode} value={status}/>
+                   onBlur={deActivatedEditMode} value={status ? status : '' }/>
         </div>}
     </>
 }

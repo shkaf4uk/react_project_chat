@@ -29,7 +29,6 @@ export const setAuthUserData = (userId, email, login, isAuth) => ({
 
 export const getAuthHeader = () => async (dispatch) => {
     let response = await loginAPI.getAuth();
-
     if (response.data.resultCode === 0) {
         let {id, email, login} = response.data.data;
         dispatch(setAuthUserData(id, email, login, true));
@@ -38,7 +37,6 @@ export const getAuthHeader = () => async (dispatch) => {
 
 export const login = (email, password, rememberMe) => async (dispatch) => {
     let response = await loginAPI.login(email, password, rememberMe);
-
     if (response.data.resultCode === 0) {
         dispatch(getAuthHeader());
     } else {
@@ -49,7 +47,6 @@ export const login = (email, password, rememberMe) => async (dispatch) => {
 
 export const logout = () => async (dispatch) => {
     let response = await loginAPI.logout();
-
     if (response.data.resultCode === 0) {
         dispatch(setAuthUserData(null, null, null, false));
     }
