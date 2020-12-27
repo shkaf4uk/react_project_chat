@@ -13,6 +13,7 @@ import {compose} from "redux";
 import store from "./redux/redux_store";
 import {WithSuspense} from "./hoc/WithSuspense";
 import HeaderContainer from "./components/Header/HeaderContainer";
+import './components/FontAwesome/Fontawesome';
 
 // import DialogsContainer from "./components/Dialogs/DialogsContainer";
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));

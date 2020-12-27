@@ -1,4 +1,5 @@
 import {profileAPI} from "../api/api";
+import {stopSubmit} from "redux-form";
 
 const ADD_POST = 'ADD_POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
@@ -48,7 +49,7 @@ export const addPostActionCreator = (newPostText) => ({type: ADD_POST, newPostTe
 export const deletePost = (postId) => ({type: DELETE_POST, postId});
 export const setUserProfile = profile => ({type: SET_USER_PROFILE, profile});
 export const setStatus = status => ({type: SET_USER_STATUS, status});
-export const savePhotoSuccess = photo => ({type: SAVE_PHOTO_SUCCESS, photo});
+export const savePhotoSuccess = photos => ({type: SAVE_PHOTO_SUCCESS, photos});
 
 
 export const getProfileUser = (userId) => async (dispatch) => {
@@ -75,12 +76,13 @@ export const savePhoto = (file) => async (dispatch) => {
     }
 }
 
-export const saveProfile = (profile) => async (dispatch, getState) => {
-    const userId = getState().auth.userId;
+export const saveProfile = (profile) => async (dispatch) => {
     const response = await profileAPI.saveProfile(profile);
-
     if (response.data.resultCode === 0) {
-        dispatch(getProfileUser(userId));
+        dispatch(setUserProfile(profile));
+    } else {
+        let massage = response.data.messages.length > 0 ? response.data.messages[0] : "Some error";
+        return dispatch(stopSubmit("profile-data", {_error: massage}));
     }
 }
 

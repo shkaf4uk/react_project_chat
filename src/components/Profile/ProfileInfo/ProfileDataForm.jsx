@@ -1,18 +1,18 @@
 import React from 'react'
-import style from "./ProfileInfo.module.css";
 import {Field, reduxForm} from "redux-form";
 import {Input, Textarea} from "../../../utils/FormControls/FormControls";
 import {required} from "../../../utils/validators";
+import style from "./ProfileInfo.module.css";
 
-const ProfileDataForm = (props) => {
-    return <form onSubmit={props.handleSubmit}>
+// форма при редактировании профиля
+const ProfileDataForm = ({handleSubmit, profile, error}) => {
+    return <form onSubmit={handleSubmit}>
         <div>
-            <b>Full name:</b> <span className={style.myName}>
+            <b>Full name:</b>
             <Field name={'fullName'} placeholder={"Full name"} component={Input} validate={[required]}/>
-        </span>
         </div>
         <div><b>Work:</b>
-                <Field name={'lookingForAJob'} component={Input} type={'checkbox'} />
+            <Field name={'lookingForAJob'} component={Input} type={'checkbox'} />
         </div>
         <div><b>My skills:</b>
             <Field name={'lookingForAJobDescription'} placeholder={"My skills"} component={Textarea} validate={[required]}/>
@@ -20,8 +20,12 @@ const ProfileDataForm = (props) => {
         <div><b>About me:</b>
             <Field name={'aboutMe'} placeholder={"About me"} component={Textarea} validate={[required]}/>
         </div>
+        <b>Contact with me:</b> {Object.keys(profile.contacts).map(key => {
+        return <Field key={key} name={'contacts.' + key} placeholder={key} component={Input} />})}
+
+        {error ? <div className={style.formErrors}>{error}</div> : ''}
         <div>
-            <button onClick={props.onSubmit}>Save</button>
+            <button>Save</button>
         </div>
     </form>
 }
