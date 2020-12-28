@@ -35,9 +35,20 @@
     text-transform: uppercase;
 }
 
+.profileInfo {
+    width: 65%;
+    padding-left: 20px;
+}
+
 .profileInfo div {
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+.profileInfo .Contact {
+    padding-left: 10px;
+    margin-top: 2px;
+    margin-bottom: 2px;
 }
 
 .input {
@@ -63,8 +74,8 @@
 }
 
 .labelFile:hover, .icon:focus {
-    color: #888;
-    border-color: #888;
+    color: black;
+    border-color: black;
 }
 
 .icon .input_file {
@@ -79,21 +90,5 @@
     padding: 0 60px;
     border: 2px solid #555;
     cursor: pointer;
+    border-radius: 5px;
 }
-
-/*.icon .input_file + .js_labelFile {*/
-/*    overflow: hidden;*/
-/*    text-overflow: ellipsis;*/
-/*    white-space: nowrap;*/
-/*    padding: 0 10px;*/
-/*    cursor: pointer;*/
-/*}*/
-
-/*.icon .input_file + .js_labelFile .icon:before {*/
-/*    content: "\f093";*/
-/*}*/
-
-/*.icon .input_file + .js_labelFile.has-file .icon:before {*/
-/*    content: "\f00c";*/
-/*    color: #5AAC7B;*/
-/*}*/

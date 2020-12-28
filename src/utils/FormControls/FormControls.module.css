@@ -1,10 +1,14 @@
-input {
+input, textarea {
     width: 300px;
     height: 40px;
     border: 0;
     border-radius: 4px;
     font-size: 16px;
     margin-bottom: 5px;
+}
+
+textarea {
+    height: 55px;
 }
 
 input[type="checkbox"] {

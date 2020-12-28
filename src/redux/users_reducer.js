@@ -64,4 +64,16 @@ export const getUsers = (currentPage, pageSize) => async (dispatch) => {
     dispatch(setUserTotalCount(data.totalCount));
 }
 
+export const Follow = (userId) => async (dispatch) => {
+    const response = await usersAPI.follow(userId);
+    console.log('response', response)
+    dispatch(follow(userId))
+}
+
+export const UnFollow = (userId) => async (dispatch) => {
+    const response = await usersAPI.unFollow(userId);
+    console.log('response', response)
+    dispatch(unFollow(userId))
+}
+
 export default usersReducer;

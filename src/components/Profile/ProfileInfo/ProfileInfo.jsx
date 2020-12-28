@@ -6,8 +6,6 @@ import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 import ProfileDataForm from "./ProfileDataForm";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-
-
 const ProfileInfo = ({saveProfile, profile, savePhoto, isOwner, status, updateStatus}) => {
     let [editMode, setEditMode] = useState(false);
 
@@ -33,9 +31,6 @@ const ProfileInfo = ({saveProfile, profile, savePhoto, isOwner, status, updateSt
 
     return (
         <div>
-
-
-
             <div className={style.containerInfo}>
                 <div className={style.profileImage}>
                     {profile.photos.large
@@ -46,7 +41,7 @@ const ProfileInfo = ({saveProfile, profile, savePhoto, isOwner, status, updateSt
                         <input type={'file'} onChange={onMainPhotoSelected} id="file" className={style.input_file}/>
                         <label htmlFor="file" className={style.labelFile}>
                             <FontAwesomeIcon icon={'download'} />
-                            <span> Загрузить файл</span>
+                            <span> Upload a photo</span>
                         </label>
                     </div>}
                 </div>
@@ -73,14 +68,17 @@ const ProfileInfo = ({saveProfile, profile, savePhoto, isOwner, status, updateSt
 
 //форма при загрузке страницы
 const ProfileData = (props) => {
-    return <div>
+    return <div className={style.profileInfo_profileData}>
         <div><b>Name:</b> <span className={style.myName}>{props.profile.fullName}</span></div>
         <div><b>Work:</b> <span>{props.profile.lookingForAJob ? 'searching' : 'have'}</span></div>
         <div><b>My skills:</b> <span>{props.profile.lookingForAJobDescription}</span></div>
         <div><b>About me:</b> {props.profile.aboutMe}</div>
         <b>Contact with me:</b> {Object.keys(props.profile.contacts).map(key => {
-        return <Contact key={key} contactTitle={key} contactValue={props.profile.contacts[key]} editMode={props.editMode}/>})}
-        { props.isOwner ? <div><button onClick={() => props.setEditMode(true)}>Edit profile</button></div> : ''}
+        return <Contact key={key} contactTitle={key} contactValue={props.profile.contacts[key]} editMode={props.editMode}/>
+        })}
+
+        { props.isOwner ? <div><button className={'btn btn-secondary'}
+                                       onClick={() => props.setEditMode(true)}>Edit profile</button></div> : ''}
     </div>
 }
 
@@ -89,10 +87,10 @@ export const Contact = ({contactTitle, contactValue, editMode}) => {
         if (contactValue === null || contactValue === '') {
             return false
         } else {
-            return <div><b>{contactTitle}:</b> {contactValue}</div>
+            return <div className={style.Contact}><b>{contactTitle}:</b> {contactValue}</div>
         }
     } else {
-        return <div>{contactTitle}: {contactValue}</div>
+        return <div className={style.Contact}><b>{contactTitle}:</b> {contactValue}</div>
     }
 
 }

@@ -1,11 +1,11 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {
-    follow,
     getUsers,
     setCurrentPage,
     setUserTotalCount,
-    unFollow,
+    UnFollow,
+    Follow
 } from "../../redux/users_reducer";
 import Users from "./Users";
 import Preloader from "../Preloader/Preloader";
@@ -29,6 +29,7 @@ class UsersContainer extends React.Component {
     }
 
     render() {
+        console.log('props userContainer: ', this.props)
         return <>
             <Preloader isFetching={this.props.isFetching}/>
             <Users onPageChanged={this.onPageChanged}
@@ -36,9 +37,8 @@ class UsersContainer extends React.Component {
                    totalItemsCount={this.props.totalItemsCount}
                    pageSize={this.props.pageSize}
                    currentPage={this.props.currentPage}
-                   follow={this.props.follow}
-                   unFollow={this.props.unFollow}
-                   portionSize={this.props.portionSize} />
+                   unFollow={this.props.UnFollow}
+                   portionSize={this.props.portionSize} follow={this.props.Follow} />
         </>
     }
 }
@@ -59,8 +59,8 @@ let mapStateToProps = (state) => {
 export default compose(
     connect(mapStateToProps,
             {
-                follow,
-                unFollow,
+                Follow,
+                UnFollow,
                 setCurrentPage,
                 setUserTotalCount,
                 getUsers: getUsers,

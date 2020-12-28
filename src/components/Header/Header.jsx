@@ -11,8 +11,8 @@ const Header = (props) => {
             <span className={style.chat}>Chat</span>
             <div className={style.loginBlock}>
                 {props.isAuth
-                    ? <div>{props.login} - <button onClick={props.logout}>Logout</button></div>
-                    : <NavLink to={'/login'}>Login</NavLink>}
+                    ? <div><span className={style.login_user}>{props.login}</span> - <button className={'btn btn-secondary'} onClick={props.logout}>Logout</button></div>
+                    : <NavLink className={'btn btn-secondary'} to={'/login'}>Login</NavLink>}
             </div>
         </header>
     )

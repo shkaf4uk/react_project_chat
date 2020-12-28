@@ -5,6 +5,7 @@ import {NavLink} from "react-router-dom";
 import Pagination from "./Pagination/Pagination";
 
 const Users = ({currentPage, onPageChanged, totalItemsCount, pageSize, portionSize, ...props}) => {
+    console.log('props Users: ', props)
     return <div className={style.allUsers}>
         {props.users.map(u => <div className={style.userInfo} key={u.id}>
             <div>
